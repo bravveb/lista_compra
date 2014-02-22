@@ -1,8 +1,8 @@
 <?php
-$conexion = mysql_connect ("localhost","appuestas","appuestas");
-mysql_select_db("appuestas",$conexion);
+$conexion = mysql_connect ("localhost","lista_compra","lista_compra");
+mysql_select_db("lista_compra",$conexion);
 
-$consulta= mysql_query("SELECT id, nombre FROM `usuarios` WHERE nombre='{$_GET["nombre"]}' and password=SHA('{$_GET["password"]}');");
+$consulta= mysql_query("SELECT id FROM `usuarios` WHERE nombre='{$_GET["nombre"]}' and password=SHA('{$_GET["password"]}');");
 echo mysql_error();
 $resultado=mysql_fetch_assoc($consulta);
 if (empty($resultado)) {
@@ -15,7 +15,6 @@ else
 if (empty($error)) {
     /* esta informacion se envia solo si la validacion es correcta */
     $resultados["n_id"] = $resultado['id'];
-    $resultados["n_usuario"] = $resultado['nombre'];
     $resultados["confirmacion"] = "correcto";
 } else {
     /* esta informacion se envia si la validacion falla */

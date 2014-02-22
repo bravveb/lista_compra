@@ -8,15 +8,14 @@ function validar_inicio_sesion(){
     if(errores!=="")
         alert(errores);
     else
-        archivoValidacion = "http://localhost:8080/appuestas_api/login.php?jsoncallback=?";
+        archivoValidacion = ruta_inicial+"login.php?jsoncallback=?";
 
         $.getJSON(archivoValidacion, {nombre: document.frm_login.nombre.value, password: document.frm_login.password.value})
                 .done(function(respuestaServer) {
                     if (respuestaServer.confirmacion === "correcto") {
-                        nombre_usuario = respuestaServer.n_usuario;
                         id_usuario = respuestaServer.n_id;
-                        $.mobile.changePage("#inicio", {transition: "fade"});
                         $("body").css({"background":"#fff"});
+                        $.mobile.changePage("#inicio", {transition: "fade"});
                     }else
                         alert('Usuario o contraseña no validas');
         });
