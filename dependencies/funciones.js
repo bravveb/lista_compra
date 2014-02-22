@@ -1,3 +1,4 @@
+var ruta_inicial="http://localhost:85/llista_compra/php/";    
 function validar_inicio_sesion(){
     var errores="";
     if (document.frm_login.nombre.value.length===0) 
@@ -31,7 +32,7 @@ function validar_registro(){
     if(errores.length>=1)
         alert(errores);
     else{
-        archivoValidacion = "http://localhost:8080/appuestas_api/registro.php?jsoncallback=?";
+        archivoValidacion = ruta_inicial+"registro.php?jsoncallback=?";
 
         $.getJSON(archivoValidacion, {nombre: document.frm_registro.nombre.value, password: document.frm_registro.password.value})
                 .done(function(respuestaServer) {
@@ -45,6 +46,16 @@ function validar_registro(){
         });
     }
 }
+
+$(document).on( "pageinit", "#inicio", function() {
+    archivoValidacion = ruta_inicial+"inicio.php?jsoncallback=?";
+    $.getJSON(archivoValidacion, {id: id_usuario})
+            .done(function(respuestaServer) {
+                $('#img_usuario_menu').html(respuestaServer["i_logo"]);
+                $('#nombre_menu').html(respuestaServer["nombre"]);
+                $('.cabecera_menu').css({'background':'url("'+ruta_inicial+'images/'+respuestaServer["i_fondo"]+'")'});
+            });
+});
 
 $(document).on( "pageinit", "#buscar_amigos", function() {
     var html="";
