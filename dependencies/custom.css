@@ -209,20 +209,38 @@
     width: 50px;
     height: 50px;
 }
-.cabecera_menu .img_usuario .f_azul{
+.cabecera_menu .img_usuario .f_color1{
     background: #428bca;
 }
-.cabecera_menu .img_usuario .f_azul_c{
+.cabecera_menu .img_usuario .f_color2{
     background: #5bc0de;
 }
-.cabecera_menu .img_usuario .f_verde{
+.cabecera_menu .img_usuario .f_color3{
     background: #5cb85c;
 }
-.cabecera_menu .img_usuario .f_naranja{
+.cabecera_menu .img_usuario .f_color4{
     background: #f0ad4e;
 }
-.cabecera_menu .img_usuario .f_rojo{
+.cabecera_menu .img_usuario .f_color5{
     background: #d9534f;
+}
+.cabecera_menu .img_usuario .f_color6{
+    background: #7c7ca0;
+}
+.cabecera_menu .img_usuario .f_color7{
+    background: #999376;
+}
+.cabecera_menu .img_usuario .f_color8{
+    background: #d4d62e;
+}
+.cabecera_menu .img_usuario .f_color9{
+    background: #926178;
+}
+.cabecera_menu .img_usuario .f_color10{
+    background: #1099b6;
+}
+.cabecera_menu .img_usuario .f_color11{
+    background: #b45454;
 }
 .mensajes_bu{
     background: #fff;

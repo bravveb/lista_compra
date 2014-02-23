@@ -91,3 +91,29 @@ function add_amigo(id_amigo){
                 $.mobile.changePage("#amigos", {transition: "slideup"});
             });
 }
+
+function seleccionado(){
+  var archivos = document.getElementById("archivos");//Damos el valor del input tipo file
+  var archivo = archivos.files; //Obtenemos el valor del input (los arcchivos) en modo de arreglo
+
+  //El objeto FormData nos permite crear un formulario pasandole clave/valor para poder enviarlo, este tipo de objeto ya tiene la propiedad multipart/form-data para poder subir archivos
+  var data = new FormData();
+
+  //Como no sabemos cuantos archivos subira el usuario, iteramos la variable y al
+  //objeto de FormData con el metodo "append" le pasamos calve/valor, usamos el indice "i" para
+  //que no se repita, si no lo usamos solo tendra el valor de la ultima iteracion
+  for(i=0; i<archivo.length; i++){
+    data.append('archivo'+i,archivo[i]);
+  }
+
+  $.ajax({
+    url: ruta_inicial+'subir.php', //Url a donde la enviaremos
+    type:'POST', //Metodo que usaremos
+    contentType:false, //Debe estar en false para que pase el objeto sin procesar
+    data:data, //Le pasamos el objeto que creamos con los archivos
+    processData:false, //Debe estar en false para que JQuery no procese los datos a enviar
+    cache:false //Para que el formulario no guarde cache
+  }).done(function(msg){
+    $("#cargados").append(msg); //Mostrara los archivos cargados en el div con el id "Cargados"
+  });
+}

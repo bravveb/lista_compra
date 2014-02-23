@@ -3,8 +3,10 @@ $conexion = mysql_connect ("localhost","lista_compra","lista_compra");
 mysql_select_db("lista_compra",$conexion);
 
 $inicial=$_GET["nombre"]{0};
+$num_color=rand(1, 11);
+$color="f_color".$num_color;
 
-mysql_query("INSERT INTO `usuarios`(`id`,`nombre`, `password`, `imagen_logo`) VALUES (SHA('{$_GET["nombre"]}'),'{$_GET["nombre"]}', SHA('{$_GET["password"]}'), '<div class=\"letra f_naranja\">$inicial</div>')");
+mysql_query("INSERT INTO `usuarios`(`id`,`nombre`, `password`, `imagen_logo`) VALUES (SHA('{$_GET["nombre"]}'),'{$_GET["nombre"]}', SHA('{$_GET["password"]}'), '<div class=\"letra $color\">$inicial</div>')");
 $x = mysql_errno();
 if ($x == 1062) {
     $error = "El usuario ya esta en uso";
