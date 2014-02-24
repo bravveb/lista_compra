@@ -1,4 +1,4 @@
-var ruta_inicial="http://localhost:85/llista_compra/php/";    
+var ruta_inicial="http://bravveb.tuars.com/lista_compra/php/";
 function validar_inicio_sesion(){
     var errores="";
     if (document.frm_login.nombre.value.length===0) 
