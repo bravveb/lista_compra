@@ -15,3 +15,4 @@ $resultadosJson = json_encode($sh_usuarios);
 /* muestra el resultado en un formato que no da problemas de seguridad en browsers */
 echo $_GET['jsoncallback'] . '(' . $resultadosJson . ');';
 mysql_close($conexion);
+/**/
