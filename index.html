@@ -16,14 +16,13 @@
     <body style="background: #0079ca">
         <div data-role="page" id="portada" class="portada">
             <div data-role="content">
-                <img src="dependencies/images/logo2.png" width="196" height="171" alt="logo"><br/>
+                <img src="dependencies/images/logo2.png" width="200" alt="logo"><br/>
                 Cargando...
-                <br/><a href="#login" data-transition="fade">Siguiente</a>
             </div>
         </div>
         <div data-role="page" id="login" class="login">
             <div data-role="content">
-                <img src="dependencies/images/logo2.png" width="196" height="171" alt="logo">
+                <img src="dependencies/images/logo2.png" width="200" alt="logo">
                 <form name="frm_login">
                     <input type="text" name="nombre" placeholder="Nombre">
                     <input type="password" name="password" placeholder="Contrase&ntilde;a">
@@ -37,7 +36,7 @@
         </div>
         <div data-role="page" id="registro" class="login">
             <div data-role="content">
-                <img src="dependencies/images/logo2.png" width="196" height="171" alt="logo">
+                <img src="dependencies/images/logo2.png" width="200" alt="logo">
                 <form id="frem_registro" name="frm_registro">
                     <input type="text" name="nombre" placeholder="Nombre">
                     <input type="password" name="password" placeholder="Contrase&ntilde;a">
@@ -51,8 +50,8 @@
         <div data-role="page" id="inicio">
             <div data-role="panel" data-animate="overlay" id="mypanel_portada" class="menu_lateral">
                 <div data-role="header" class="cabecera_menu">
-                    <div class="img_usuario" id="img_usuario_menu"></div>
-                    <span id="nombre_menu">Menu</span>
+                    <div class="img_usuario"></div>
+                    <span>Menu</span>
                 </div>
                 <ul>
                     <li><a href="#inicio"><div class="enlaces_menu"><span class="icono_inicio">&nbsp;</span>Inicio</div></a></li>
@@ -60,7 +59,7 @@
                     <li><a href="#gestionar"><div class="enlaces_menu"><span class="icono_listas">&nbsp;</span>Listas</div></a></li>
                     <li><a href="#amigos"><div class="enlaces_menu"><span class="icono_amigos">&nbsp;</span>Amigos</div></a></li>
                     <li><a href="#perfil"><div class="enlaces_menu"><span class="icono_perfil">&nbsp;</span>Perfil</div></a></li>
-                    <li><a href="#portada"><div class="enlaces_menu"><span class="icono_salir">&nbsp;</span>Salir</div></a></li>
+                    <li><a href="#portada" onclick="salir()"><div class="enlaces_menu"><span class="icono_salir">&nbsp;</span>Salir</div></a></li>
                 </ul>
             </div>
             <div data-role="header" class="cabecera">
@@ -75,17 +74,16 @@
         <div data-role="page" id="amigos">
             <div data-role="panel" data-animate="overlay" id="mypanel_amigos" class="menu_lateral">
                 <div data-role="header" class="cabecera_menu">
-                    <div class="img_usuario"><div class="letra f_naranja">O</div></div>
-                    <span>Óscar Bravo Sarro</span>
+                    <div class="img_usuario"></div>
+                    <span>Menu</span>
                 </div>
                 <ul>
-                    <li><a href="#inicio"><div class="enlaces_menu">Inicio</div></a></li>
-                    <li><a href="#almacen"><div class="enlaces_menu">Almacen</div></a></li>
-                    <li><a href="#gestionar"><div class="enlaces_menu">Gestionar</div></a></li>
-                    <li><a href="#amigos"><div class="enlaces_menu">Amigos</div></a></li>
-                    <li><a href="#perfil"><div class="enlaces_menu">Perfil</div></a></li>
-                    <li><a href="#"><div class="enlaces_menu">Cerrar sesi&oacute;n</div></a></li>
-                    <li><a href="#portada"><div class="enlaces_menu">Salir</div></a></li>
+                    <li><a href="#inicio"><div class="enlaces_menu"><span class="icono_inicio">&nbsp;</span>Inicio</div></a></li>
+                    <li><a href="#almacen"><div class="enlaces_menu"><span class="icono_almacen">&nbsp;</span>Almacen</div></a></li>
+                    <li><a href="#gestionar"><div class="enlaces_menu"><span class="icono_listas">&nbsp;</span>Listas</div></a></li>
+                    <li><a href="#amigos"><div class="enlaces_menu"><span class="icono_amigos">&nbsp;</span>Amigos</div></a></li>
+                    <li><a href="#perfil"><div class="enlaces_menu"><span class="icono_perfil">&nbsp;</span>Perfil</div></a></li>
+                    <li><a href="#portada" onclick="salir()"><div class="enlaces_menu"><span class="icono_salir">&nbsp;</span>Salir</div></a></li>
                 </ul>
             </div>
             <div data-role="header" class="cabecera">
@@ -111,10 +109,10 @@
             </div>
         </div>
         <div data-role="page" id="perfil">
-            <div data-role="panel" data-animate="overlay" id="mypanel_portada" class="menu_lateral">
+            <div data-role="panel" data-animate="overlay" id="mypanel_perfil" class="menu_lateral">
                 <div data-role="header" class="cabecera_menu">
-                    <div class="img_usuario" id="img_usuario_menu"></div>
-                    <span id="nombre_menu">Menu</span>
+                    <div class="img_usuario"></div>
+                    <span>Menu</span>
                 </div>
                 <ul>
                     <li><a href="#inicio"><div class="enlaces_menu"><span class="icono_inicio">&nbsp;</span>Inicio</div></a></li>
@@ -122,20 +120,25 @@
                     <li><a href="#gestionar"><div class="enlaces_menu"><span class="icono_listas">&nbsp;</span>Listas</div></a></li>
                     <li><a href="#amigos"><div class="enlaces_menu"><span class="icono_amigos">&nbsp;</span>Amigos</div></a></li>
                     <li><a href="#perfil"><div class="enlaces_menu"><span class="icono_perfil">&nbsp;</span>Perfil</div></a></li>
-                    <li><a href="#portada"><div class="enlaces_menu"><span class="icono_salir">&nbsp;</span>Salir</div></a></li>
+                    <li><a href="#portada" onclick="salir()"><div class="enlaces_menu"><span class="icono_salir">&nbsp;</span>Salir</div></a></li>
                 </ul>
             </div>
             <div data-role="header" class="cabecera">
-                <a href="#mypanel_portada" class="enlace_menu">&nbsp;</a>
+                <a href="#mypanel_perfil" class="enlace_menu">&nbsp;</a>
                 <span>nombre_app</span>
                 <a href="#" class="enlace_refrescar">&nbsp;</a>
             </div>
             <div data-role="content">
-                <div id="subir">
-                    <input id="archivos" type="file" name="archivos[]" multiple="multiple" onchange="seleccionado();" />
-                </div>
                 <div id="cargados">
                     <!-- Aqui van los archivos cargados -->
+                </div>
+                subir imagen
+                <div id="subir">
+                    <input id="foto" type="file" name="archivos[]" multiple="multiple" onchange="foto();" />
+                </div>
+                subir fondo
+                <div id="subir_fondo">
+                    <input id="fondo" type="file" name="archivos[]" multiple="multiple" onchange="fondo();" />
                 </div>
             </div>
         </div>

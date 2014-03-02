@@ -1,6 +1,5 @@
 <?php
-$conexion = mysql_connect ("localhost","lista_compra","lista_compra");
-mysql_select_db("lista_compra",$conexion);
+include './conexion.php';
 
 $consulta= mysql_query("SELECT id FROM `usuarios` WHERE nombre='{$_GET["nombre"]}' and password=SHA('{$_GET["password"]}');");
 echo mysql_error();

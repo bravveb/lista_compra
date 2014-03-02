@@ -1,6 +1,5 @@
 <?php
-$conexion = mysql_connect ("localhost","lista_compra","lista_compra");
-mysql_select_db("lista_compra",$conexion);
+include './conexion.php';
 
 $inicial=$_GET["nombre"]{0};
 $num_color=rand(1, 11);
@@ -11,10 +10,13 @@ $x = mysql_errno();
 if ($x == 1062) {
     $error = "El usuario ya esta en uso";
 }
-
+$consulta= mysql_query("SELECT id FROM `usuarios` WHERE nombre='{$_GET["nombre"]}'");
+echo mysql_error();
+$resultado=mysql_fetch_assoc($consulta);
 /* verifica que el usuario y password concuerden correctamente */
 if (empty($error)) {
     /* esta informacion se envia solo si la validacion es correcta */
+    $resultados["n_id"] = $resultado['id'];
     $resultados["confirmacion"] = "correcto";
 } else {
     /* esta informacion se envia si la validacion falla */

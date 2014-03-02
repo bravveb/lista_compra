@@ -1,4 +1,19 @@
-var ruta_inicial="http://localhost:85/llista_compra/php/";    
+var ruta_inicial="http://localhost:85/llista_compra/php/"; 
+$(window).load(function(){
+    setTimeout(function() {
+        if (localStorage.getItem("identificador_sesion").length === 0)
+            $.mobile.changePage("#login", {transition: "fade"});
+        else {
+            id_usuario = localStorage.getItem("identificador_sesion");
+            $("body").css({"background": "#fff"});
+            carga_imagenes();
+            $.mobile.changePage("#inicio", {transition: "fade"});
+        }
+    }, 1000);
+});
+function salir(){
+    localStorage.setItem("identificador_sesion", "");
+}
 function validar_inicio_sesion(){
     var errores="";
     if (document.frm_login.nombre.value.length===0) 
@@ -13,8 +28,10 @@ function validar_inicio_sesion(){
         $.getJSON(archivoValidacion, {nombre: document.frm_login.nombre.value, password: document.frm_login.password.value})
                 .done(function(respuestaServer) {
                     if (respuestaServer.confirmacion === "correcto") {
-                        id_usuario = respuestaServer.n_id;
+                        localStorage.setItem("identificador_sesion", respuestaServer.n_id)
+                        id_usuario = localStorage.getItem("identificador_sesion");
                         $("body").css({"background":"#fff"});
+                        carga_imagenes();
                         $.mobile.changePage("#inicio", {transition: "fade"});
                     }else
                         alert('Usuario o contraseña no validas');
@@ -36,9 +53,10 @@ function validar_registro(){
         $.getJSON(archivoValidacion, {nombre: document.frm_registro.nombre.value, password: document.frm_registro.password.value})
                 .done(function(respuestaServer) {
                     if (respuestaServer.confirmacion === "correcto") {
-                        nombre_usuario = respuestaServer.n_usuario;
-                        id_usuario = respuestaServer.n_id;
+                        localStorage.setItem("identificador_sesion", respuestaServer.n_id)
+                        id_usuario = localStorage.getItem("identificador_sesion");
                         $.mobile.changePage("#inicio", {transition: "fade"});
+                        carga_imagenes();
                         $("body").css({"background":"#fff"});
                     }else
                         alert('El usuario ya existe');
@@ -46,15 +64,19 @@ function validar_registro(){
     }
 }
 
-$(document).on( "pageinit", "#inicio", function() {
+function carga_imagenes() {
     archivoValidacion = ruta_inicial+"inicio.php?jsoncallback=?";
     $.getJSON(archivoValidacion, {id: id_usuario})
             .done(function(respuestaServer) {
-                $('#img_usuario_menu').html(respuestaServer["i_logo"]);
-                $('#nombre_menu').html(respuestaServer["nombre"]);
+                var res = respuestaServer["i_logo"].substring(0,1);
+                if (res==='<')
+                    $('.img_usuario').html(respuestaServer["i_logo"]);
+                else
+                    $('.img_usuario').css({'background':'url("'+ruta_inicial+'images/'+respuestaServer["i_logo"]+'")'});
+                $('.img_usuario span').html(respuestaServer["nombre"]);
                 $('.cabecera_menu').css({'background':'url("'+ruta_inicial+'images/'+respuestaServer["i_fondo"]+'")'});
             });
-});
+}
 
 $(document).on( "pageinit", "#buscar_amigos", function() {
     var html="";
@@ -92,28 +114,49 @@ function add_amigo(id_amigo){
             });
 }
 
-function seleccionado(){
-  var archivos = document.getElementById("archivos");//Damos el valor del input tipo file
+function fondo(){
+  var archivos = document.getElementById("fondo");//Damos el valor del input tipo file
   var archivo = archivos.files; //Obtenemos el valor del input (los arcchivos) en modo de arreglo
-
   //El objeto FormData nos permite crear un formulario pasandole clave/valor para poder enviarlo, este tipo de objeto ya tiene la propiedad multipart/form-data para poder subir archivos
   var data = new FormData();
-
   //Como no sabemos cuantos archivos subira el usuario, iteramos la variable y al
   //objeto de FormData con el metodo "append" le pasamos calve/valor, usamos el indice "i" para
   //que no se repita, si no lo usamos solo tendra el valor de la ultima iteracion
   for(i=0; i<archivo.length; i++){
     data.append('archivo'+i,archivo[i]);
   }
-
   $.ajax({
-    url: ruta_inicial+'subir.php', //Url a donde la enviaremos
+    url: ruta_inicial+'subir_fondo.php?usuario='+id_usuario, //Url a donde la enviaremos
     type:'POST', //Metodo que usaremos
     contentType:false, //Debe estar en false para que pase el objeto sin procesar
-    data:data, //Le pasamos el objeto que creamos con los archivos
+    data: data, //Le pasamos el objeto que creamos con los archivos
     processData:false, //Debe estar en false para que JQuery no procese los datos a enviar
     cache:false //Para que el formulario no guarde cache
   }).done(function(msg){
     $("#cargados").append(msg); //Mostrara los archivos cargados en el div con el id "Cargados"
   });
+  carga_imagenes();
+}
+function foto(){
+  var archivos = document.getElementById("foto");//Damos el valor del input tipo file
+  var archivo = archivos.files; //Obtenemos el valor del input (los arcchivos) en modo de arreglo
+  //El objeto FormData nos permite crear un formulario pasandole clave/valor para poder enviarlo, este tipo de objeto ya tiene la propiedad multipart/form-data para poder subir archivos
+  var data = new FormData();
+  //Como no sabemos cuantos archivos subira el usuario, iteramos la variable y al
+  //objeto de FormData con el metodo "append" le pasamos calve/valor, usamos el indice "i" para
+  //que no se repita, si no lo usamos solo tendra el valor de la ultima iteracion
+  for(i=0; i<archivo.length; i++){
+    data.append('archivo'+i,archivo[i]);
+  }
+  $.ajax({
+    url: ruta_inicial+'subir_foto.php?usuario='+id_usuario, //Url a donde la enviaremos
+    type:'POST', //Metodo que usaremos
+    contentType:false, //Debe estar en false para que pase el objeto sin procesar
+    data: data, //Le pasamos el objeto que creamos con los archivos
+    processData:false, //Debe estar en false para que JQuery no procese los datos a enviar
+    cache:false //Para que el formulario no guarde cache
+  }).done(function(msg){
+    $("#cargados").append(msg); //Mostrara los archivos cargados en el div con el id "Cargados"
+  });
+  carga_imagenes();
 }

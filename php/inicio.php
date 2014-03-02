@@ -1,6 +1,5 @@
 <?php
-$conexion = mysql_connect ("localhost","lista_compra","lista_compra");
-mysql_select_db("lista_compra",$conexion);
+include './conexion.php';
 
 $peticion=mysql_query("SELECT nombre, imagen_logo, imagen_fondo FROM usuarios WHERE id='{$_GET["id"]}'");
 echo mysql_error();
