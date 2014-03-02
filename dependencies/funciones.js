@@ -1,4 +1,4 @@
-var ruta_inicial="http://localhost:85/llista_compra/php/"; 
+var ruta_inicial="http://bravveb.tuars.com/lista_compra/php/"; 
 $(window).load(function(){
     setTimeout(function() {
         if (localStorage.getItem("identificador_sesion").length === 0)
