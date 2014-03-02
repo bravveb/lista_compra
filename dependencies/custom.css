@@ -1,0 +1,326 @@
+/* 
+    Created on : 21-dic-2013, 9:34:23
+    Author     : Óscar Bravo Sarro
+    Description: Estilos para aplicacion movil con phonegap y jquery mobile
+    Colores    : Azul---  #0079ca
+               : Verde-- #6fb04a
+*/
+/*//////////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////// PORTADA //////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////*/
+.portada{
+    background: #0079ca;
+    background-image: url('images/fondo_deg.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    color: #fff;
+}
+.limpiar{clear: both;}
+/*//////////////////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////// LOGIN //////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////*/
+.login{
+    background: #0079ca;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+}
+.login .ui-btn-up-c{
+    background: #6fb04a;
+    border-radius: 0;
+    border-color: #3b5c28 #3d5e2a #2a401c;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+    text-shadow: 0 1px rgba(0,0,0,0.35);
+}
+.login .ui-btn-hover-c{
+    background: #6fb04a;
+    border-radius: 0;
+    border-color: #3b5c28 #3d5e2a #2a401c;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+    text-shadow: 0 1px rgba(0,0,0,0.35);
+}
+.login .ui-link{
+    color: #fff!important;
+    font-weight: bold;
+    text-decoration: none;
+}
+.login .ui-link:hover{
+    color: #fff!important;
+    font-weight: bold;
+    text-decoration: none;
+}
+.login .ui-btn-active:hover{
+    color: #fff;
+}
+/*///////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////// MENU LATERAL //////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////////////////*/
+.menu_lateral{
+    background: #444;
+}
+.menu_lateral ul{
+    list-style: none;
+    margin-left: -40px!important;
+}
+.menu_lateral li{
+    border-bottom: solid 1px #999!important;
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-left: 5px;
+    background: #444!important;
+}
+.menu_lateral .ui-link{
+    color: #fff!important;
+    text-decoration: none;
+}
+.enlaces_menu{
+    margin-left: -5px;
+    padding-left: 5px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.enlaces_menu .icono_inicio{
+    padding-right: 18px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    background: url(images/glyphicons-halflings-white.png);
+    background-position: 2px -22px;
+    background-repeat: no-repeat;
+}
+.enlaces_menu .icono_almacen{
+    padding-right: 18px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    background: url(images/glyphicons-halflings-white.png);
+    background-position: -47px -45px;
+    background-repeat: no-repeat;
+}
+.enlaces_menu .icono_listas{
+    padding-right: 18px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    background: url(images/glyphicons-halflings-white.png);
+    background-position: -358px -118px;
+    background-repeat: no-repeat;
+}
+.enlaces_menu .icono_amigos{
+    padding-right: 18px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    background: url(images/glyphicons-halflings-white.png);
+    background-position: -117px 2px;
+    background-repeat: no-repeat;
+}
+.enlaces_menu .icono_perfil{
+    padding-right: 18px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    background: url(images/glyphicons-halflings-white.png);
+    background-position: -164px 2px;
+    background-repeat: no-repeat;
+}
+.enlaces_menu .icono_salir{
+    padding-right: 18px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    background: url(images/glyphicons-halflings-white.png);
+    background-position: -382px 2px;
+    background-repeat: no-repeat;
+}
+.enlace_refrescar{
+    background: #0079ca;
+    border: none;
+    background: url('images/icons-36-white.png');
+    background-position: 1074px;;
+    padding-top: 6px;
+    float: right;
+}
+.enlace_mas{
+    background: #0079ca;
+    border: none;
+    background: url('images/icons-36-white.png');
+    background-position: 1726px;;
+    padding-top: 6px;
+    float: right;
+}
+.enlace_lupa{
+    background: #0079ca;
+    border: none;
+    background: url('images/icons-36-white.png');
+    background-position: 504px;;
+    padding-top: 6px;
+    float: right;
+}
+.enlace_volver{
+    background: #0079ca;
+    border: none;
+    background: url('images/icons-36-white.png');
+    background-position: 1439px;
+    padding-top: 6px;
+}
+.enlace_menu{
+    background: #0079ca;
+    border: none;
+    background: url('images/icons-36-white.png');
+    background-position: 1876px;
+    padding-top: 6px;
+}
+.cabecera{
+    background: #0079ca;
+    text-align: center;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.cabecera img{vertical-align: middle;}
+.cabecera_menu {
+    background: #555;
+    background-size: cover!important;
+    border-bottom: 2px solid #ddd;
+    text-align: center;
+    font-family: sans-serif;
+    color: #fff;
+    padding-top: 12px;
+    padding-bottom: 8px;
+    margin: -16px;
+}
+.cabecera_menu .img_usuario{
+    border: solid 2px #ddd;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    margin-bottom: 7px;
+    background-size: cover!important;
+}
+.cabecera_menu .img_usuario .letra{
+    font-family: sans-serif;
+    text-transform: capitalize;
+    font-size: 32px;
+    text-shadow: none;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+}
+.cabecera_menu .img_usuario .f_color1{
+    background: #428bca;
+}
+.cabecera_menu .img_usuario .f_color2{
+    background: #5bc0de;
+}
+.cabecera_menu .img_usuario .f_color3{
+    background: #5cb85c;
+}
+.cabecera_menu .img_usuario .f_color4{
+    background: #f0ad4e;
+}
+.cabecera_menu .img_usuario .f_color5{
+    background: #d9534f;
+}
+.cabecera_menu .img_usuario .f_color6{
+    background: #7c7ca0;
+}
+.cabecera_menu .img_usuario .f_color7{
+    background: #999376;
+}
+.cabecera_menu .img_usuario .f_color8{
+    background: #d4d62e;
+}
+.cabecera_menu .img_usuario .f_color9{
+    background: #926178;
+}
+.cabecera_menu .img_usuario .f_color10{
+    background: #1099b6;
+}
+.cabecera_menu .img_usuario .f_color11{
+    background: #b45454;
+}
+.mensajes_bu{
+    background: #fff;
+    color: #000;
+    border-radius: 500px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-right: 30px;
+    float: right;
+}
+/*///////////////////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////// INICIO ///////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////////////////*/
+.resultado{
+    font-weight: bold;
+    font-size: 1em;
+}
+.porcentaje{
+    background: #0079ca;
+    border-color: #3b5c28 #3d5e2a #2a401c;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+    text-shadow: 0 1px rgba(0,0,0,0.35);
+    font-weight: bold;
+    font-size: 1em;
+    text-align: center;
+}
+.porcentaje span{
+    font-size: 5em;
+}
+/*////////////////////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////// AMIGOS/////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////////////*/
+#amigos .ui-bar-c{
+    background: #6fb04a;
+    border-color: #3b5c28 #3d5e2a #2a401c;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+    text-shadow: 0 1px rgba(0,0,0,0.35);
+}
+#amigos li{
+    border-bottom: 2px solid #aaa /*{d-bhover-border}*/;
+    font-weight: bold;
+    color: #333 /*{d-bhover-color}*/;
+    background: #fff;
+}
+#amigos li a{
+    color: #333;
+}
+#amigos li p{
+    margin-left: 15px;
+}
+/*///////////////////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////// BUSCAR AMIGOS/////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////////////////*/
+#buscar_amigos .ui-bar-c{
+    background: #6fb04a;
+    border-color: #3b5c28 #3d5e2a #2a401c;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+    text-shadow: 0 1px rgba(0,0,0,0.35);
+}
+#buscar_amigos li{
+    border-bottom: 2px solid #aaa /*{d-bhover-border}*/;
+    font-weight: bold;
+    color: #333 /*{d-bhover-color}*/;
+    background: #fff;
+}
+.agregar_amigo{
+    background: #0079ca;
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+    -webkit-border-radius: .6em;
+    border-radius: .6em;
+    text-shadow: 0 1px rgba(0,0,0,0.35);
+    color: #fff;
+    float: right;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: -5px;
+    cursor: pointer;
+}
