@@ -73,7 +73,7 @@ function carga_imagenes() {
                     $('.img_usuario').html(respuestaServer["i_logo"]);
                 else
                     $('.img_usuario').css({'background':'url("'+ruta_inicial+'images/'+respuestaServer["i_logo"]+'")'});
-                $('.img_usuario span').html(respuestaServer["nombre"]);
+                $('.cabecera_menu span').html(respuestaServer["nombre"]);
                 $('.cabecera_menu').css({'background':'url("'+ruta_inicial+'images/'+respuestaServer["i_fondo"]+'")'});
             });
 }
