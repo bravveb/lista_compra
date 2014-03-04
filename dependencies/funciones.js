@@ -1,4 +1,4 @@
-var ruta_inicial="http://bravveb.hol.es/lstcp/php/"; 
+var ruta_inicial="http://bravveb.hol.es/lstcp/php/";  
 $(window).load(function(){
     setTimeout(function() {
         if (localStorage.getItem("identificador_sesion").length === 0)
