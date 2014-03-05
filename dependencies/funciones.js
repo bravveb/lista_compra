@@ -1,7 +1,7 @@
-var ruta_inicial="http://localhost:85/llista_compra/php/"; 
+var ruta_inicial="http://bravveb.hol.es/lstcp/php/"; 
 $(window).load(function(){
     setTimeout(function() {
-        if (localStorage.getItem("identificador_sesion").length === 0)
+        if (!localStorage.getItem("identificador_sesion"))
             $.mobile.changePage("#login", {transition: "fade"});
         else {
             id_usuario = localStorage.getItem("identificador_sesion");
@@ -19,7 +19,7 @@ function validar_inicio_sesion(){
     if (document.frm_login.nombre.value.length===0) 
         errores+="Falta el nombre de usuario\n"; 
     if (document.frm_login.password.value.length===0) 
-        errores+="Falta la contraseñas de usuario\n"; 
+        errores+="Falta la contraseÃ±as de usuario\n"; 
     if(errores!=="")
         alert(errores);
     else
@@ -34,7 +34,7 @@ function validar_inicio_sesion(){
                         carga_imagenes();
                         $.mobile.changePage("#inicio", {transition: "fade"});
                     }else
-                        alert('Usuario o contraseña no validas');
+                        alert('Usuario o contraseÃ±a no validas');
         });
 }
 function validar_registro(){
@@ -42,9 +42,9 @@ function validar_registro(){
     if (document.frm_registro.nombre.value.length===0) 
         errores+="Falta el nombre de usuario\n"; 
     if (document.frm_registro.password.value.length===0) 
-        errores+="Falta la contraseñas de usuario\n";
+        errores+="Falta la contraseÃ±as de usuario\n";
     if (document.frm_registro.password.value!==document.frm_registro.r_password.value) 
-        errores+="Las contraseñas no coinciden\n";
+        errores+="Las contraseÃ±as no coinciden\n";
     if(errores.length>=1)
         alert(errores);
     else{
@@ -73,7 +73,7 @@ function carga_imagenes() {
                     $('.img_usuario').html(respuestaServer["i_logo"]);
                 else
                     $('.img_usuario').css({'background':'url("'+ruta_inicial+'images/'+respuestaServer["i_logo"]+'")'});
-                $('.img_usuario span').html(respuestaServer["nombre"]);
+                $('.cabecera_menu span').html(respuestaServer["nombre"]);
                 $('.cabecera_menu').css({'background':'url("'+ruta_inicial+'images/'+respuestaServer["i_fondo"]+'")'});
             });
 }
