@@ -1,10 +1,11 @@
 var ruta_inicial="http://bravveb.hol.es/lstcp/php/"; 
-var version = 0.2;
+var version = 0.1;
 $(document).ready(function(){
     archivoValidacion = ruta_inicial+"versiones.php?jsoncallback=?";
         $.getJSON(archivoValidacion, {})
                 .done(function(respuestaServer) {
                     if (respuestaServer.version > version) {
+                        alert('Se descargará una actualizacion, para un correcto funcionamiento de la apliación instale la nueva versión. Gracias');
                         navigator.app.loadUrl(url, { openExternal:true });
                         return false;
             }
