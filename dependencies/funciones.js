@@ -5,6 +5,7 @@ $(document).ready(function(){
         $.getJSON(archivoValidacion, {})
                 .done(function(respuestaServer) {
                     if (respuestaServer.version > version) {
+                        url='https://build.phonegap.com/apps/794066/download/android';
                         alert('Se descargará una actualizacion, para un correcto funcionamiento de la apliación instale la nueva versión. Gracias');
                         navigator.app.loadUrl(url, { openExternal:true });
                         return false;
