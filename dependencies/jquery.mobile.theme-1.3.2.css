@@ -647,8 +647,8 @@ a.ui-link-inherit {
 /* corner rounding classes
 -----------------------------------------------------------------------------------------------------------*/
 .ui-corner-all {
-	-webkit-border-radius: 				.6em /*{global-radii-blocks}*/;
-	border-radius: 						.6em /*{global-radii-blocks}*/;
+	//-webkit-border-radius: 				.6em /*{global-radii-blocks}*/;
+	//border-radius: 						.6em /*{global-radii-blocks}*/;
 }
 /* Form field separator
 -----------------------------------------------------------------------------------------------------------*/

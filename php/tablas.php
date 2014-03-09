@@ -1,6 +1,13 @@
 <?php
 include './conexion.php';
 
+$sql3 = "CREATE TABLE versiones
+(version float,
+url text
+)";
+mysql_query($sql3,$conexion);
+echo mysql_error();
+
 $sql1 = "CREATE TABLE usuarios
 (id varchar (40) NOT NULL UNIQUE,
 nombre varchar (30) NOT NULL UNIQUE,
