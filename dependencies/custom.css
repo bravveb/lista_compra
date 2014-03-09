@@ -39,7 +39,7 @@
     text-shadow: 0 1px rgba(0,0,0,0.35);
 }
 .login .ui-btn-hover-c{
-    background: #6fb04a;
+    background: #669933;
     border-radius: 0;
     border-color: #3b5c28 #3d5e2a #2a401c;
     border: 1px solid rgba(0,0,0,0.4);
@@ -75,6 +75,9 @@
     margin-right: -15px;
     padding-left: 5px;
     background: #444!important;
+}
+.menu_lateral li:hover{
+    background: #111!important;
 }
 .menu_lateral .ui-link{
     color: #fff!important;
@@ -323,4 +326,41 @@
     padding-right: 10px;
     margin-top: -5px;
     cursor: pointer;
+}
+.cabecera_menu .opacidad_nombre{
+    height: 25px;
+    background: #111;
+    opacity: 0.5;
+    margin-bottom: -23px;
+}
+.cabecera_menu span{
+    position: relative;
+}
+/*/////////////////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////// PERFIL //////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////////////////*/
+.boton_subida{
+    background: #6fb04a;
+    border-radius: 0;
+    border-color: #3b5c28 #3d5e2a #2a401c;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+    text-shadow: 0 1px rgba(0,0,0,0.35);
+    text-align: center;
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    color: #fff;
+    float: left;
+    position: relative;
+    margin-right: -85px;
+}
+.boton_subida:hover{
+    background: #669933;
+}
+#subir_fondo input, #subir input{
+    opacity: 0;
+}
+#subir_fondo .ui-input-search, div.ui-input-text, #subir .ui-input-search, div.ui-input-text{
+    position: inherit;
 }

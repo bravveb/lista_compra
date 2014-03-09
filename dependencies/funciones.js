@@ -1,12 +1,23 @@
-var ruta_inicial="http://bravveb.tuars.com/lista_compra/php/"; 
+var ruta_inicial="http://bravveb.hol.es/lstcp/php/"; 
+var version = 0.2;
+$(document).ready(function(){
+    archivoValidacion = ruta_inicial+"versiones.php?jsoncallback=?";
+        $.getJSON(archivoValidacion, {})
+                .done(function(respuestaServer) {
+                    if (respuestaServer.version > version) {
+                        navigator.app.loadUrl(url, { openExternal:true });
+                        return false;
+            }
+        }); 
+        id_usuario = localStorage.getItem("identificador_sesion");
+        carga_imagenes();
+});
 $(window).load(function(){
     setTimeout(function() {
         if (!localStorage.getItem("identificador_sesion"))
             $.mobile.changePage("#login", {transition: "fade"});
         else {
-            id_usuario = localStorage.getItem("identificador_sesion");
             $("body").css({"background": "#fff"});
-            carga_imagenes();
             $.mobile.changePage("#inicio", {transition: "fade"});
         }
     }, 1000);
@@ -19,7 +30,7 @@ function validar_inicio_sesion(){
     if (document.frm_login.nombre.value.length===0) 
         errores+="Falta el nombre de usuario\n"; 
     if (document.frm_login.password.value.length===0) 
-        errores+="Falta la contraseÃ±as de usuario\n"; 
+        errores+="Falta la contraseña de usuario\n"; 
     if(errores!=="")
         alert(errores);
     else
@@ -34,7 +45,7 @@ function validar_inicio_sesion(){
                         carga_imagenes();
                         $.mobile.changePage("#inicio", {transition: "fade"});
                     }else
-                        alert('Usuario o contraseÃ±a no validas');
+                        alert('Usuario o contraseña no validas');
         });
 }
 function validar_registro(){
@@ -42,14 +53,13 @@ function validar_registro(){
     if (document.frm_registro.nombre.value.length===0) 
         errores+="Falta el nombre de usuario\n"; 
     if (document.frm_registro.password.value.length===0) 
-        errores+="Falta la contraseÃ±as de usuario\n";
+        errores+="Falta la contraseña de usuario\n";
     if (document.frm_registro.password.value!==document.frm_registro.r_password.value) 
-        errores+="Las contraseÃ±as no coinciden\n";
+        errores+="Las contraseñas no coinciden\n";
     if(errores.length>=1)
         alert(errores);
     else{
         archivoValidacion = ruta_inicial+"registro.php?jsoncallback=?";
-
         $.getJSON(archivoValidacion, {nombre: document.frm_registro.nombre.value, password: document.frm_registro.password.value})
                 .done(function(respuestaServer) {
                     if (respuestaServer.confirmacion === "correcto") {
@@ -115,6 +125,7 @@ function add_amigo(id_amigo){
 }
 
 function fondo(){
+  $("#cargados").html('Cargando imagen...');
   var archivos = document.getElementById("fondo");//Damos el valor del input tipo file
   var archivo = archivos.files; //Obtenemos el valor del input (los arcchivos) en modo de arreglo
   //El objeto FormData nos permite crear un formulario pasandole clave/valor para poder enviarlo, este tipo de objeto ya tiene la propiedad multipart/form-data para poder subir archivos
@@ -125,6 +136,7 @@ function fondo(){
   for(i=0; i<archivo.length; i++){
     data.append('archivo'+i,archivo[i]);
   }
+  $("#cargados").html('Subiendo imagen...');
   $.ajax({
     url: ruta_inicial+'subir_fondo.php?usuario='+id_usuario, //Url a donde la enviaremos
     type:'POST', //Metodo que usaremos
@@ -133,11 +145,12 @@ function fondo(){
     processData:false, //Debe estar en false para que JQuery no procese los datos a enviar
     cache:false //Para que el formulario no guarde cache
   }).done(function(msg){
-    $("#cargados").append(msg); //Mostrara los archivos cargados en el div con el id "Cargados"
+    $("#cargados").html(msg); //Mostrara los archivos cargados en el div con el id "Cargados"
   });
   carga_imagenes();
 }
 function foto(){
+  $("#cargados").html('Cargando imagen...');
   var archivos = document.getElementById("foto");//Damos el valor del input tipo file
   var archivo = archivos.files; //Obtenemos el valor del input (los arcchivos) en modo de arreglo
   //El objeto FormData nos permite crear un formulario pasandole clave/valor para poder enviarlo, este tipo de objeto ya tiene la propiedad multipart/form-data para poder subir archivos
@@ -148,6 +161,7 @@ function foto(){
   for(i=0; i<archivo.length; i++){
     data.append('archivo'+i,archivo[i]);
   }
+  $("#cargados").html('Subiendo imagen...');
   $.ajax({
     url: ruta_inicial+'subir_foto.php?usuario='+id_usuario, //Url a donde la enviaremos
     type:'POST', //Metodo que usaremos
@@ -156,7 +170,7 @@ function foto(){
     processData:false, //Debe estar en false para que JQuery no procese los datos a enviar
     cache:false //Para que el formulario no guarde cache
   }).done(function(msg){
-    $("#cargados").append(msg); //Mostrara los archivos cargados en el div con el id "Cargados"
+    $("#cargados").html(msg); //Mostrara los archivos cargados en el div con el id "Cargados"
   });
   carga_imagenes();
 }
