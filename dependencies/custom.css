@@ -37,6 +37,7 @@
     border: 1px solid rgba(0,0,0,0.4);
     border-bottom: 1px solid rgba(0,0,0,0.6);
     text-shadow: 0 1px rgba(0,0,0,0.35);
+    color: #fff;
 }
 .login .ui-btn-hover-c{
     background: #669933;
@@ -45,6 +46,19 @@
     border: 1px solid rgba(0,0,0,0.4);
     border-bottom: 1px solid rgba(0,0,0,0.6);
     text-shadow: 0 1px rgba(0,0,0,0.35);
+    color: #fff;
+}
+.login .ui-btn-down-c{
+    background: #669933;
+    border-radius: 0;
+    border-color: #3b5c28 #3d5e2a #2a401c;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+    text-shadow: 0 1px rgba(0,0,0,0.35);
+    color: #fff;
+}
+.login .ui-btn-up-c:hover{
+    background: #669933;
 }
 .login .ui-link{
     color: #fff!important;
@@ -175,6 +189,13 @@
     background-position: 1876px;
     padding-top: 6px;
 }
+.enlace_casa{
+    background: #0079ca;
+    border: none;
+    background: url('images/icons-36-white.png');
+    background-position: 2305px;
+    padding-top: 6px;
+}
 .cabecera{
     background: #0079ca;
     text-align: center;
@@ -263,17 +284,23 @@
     font-size: 1em;
 }
 .porcentaje{
-    background: #0079ca;
-    border-color: #3b5c28 #3d5e2a #2a401c;
-    border: 1px solid rgba(0,0,0,0.4);
-    border-bottom: 1px solid rgba(0,0,0,0.6);
-    text-shadow: 0 1px rgba(0,0,0,0.35);
-    font-weight: bold;
-    font-size: 1em;
-    text-align: center;
+    background-image: -webkit-linear-gradient(top,#5cb85c 0,#449d44 100%);
+    background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff449d44', GradientType=0);
+    height: 7px;
+    padding: 0px!important;
+    position: relative;
+    z-index: 500;
 }
-.porcentaje span{
-    font-size: 5em;
+.marca_porcentaje{
+    background-image: -webkit-linear-gradient(top,#ebebeb 0,#f5f5f5 100%);
+    background-image: linear-gradient(to bottom,#ebebeb 0,#f5f5f5 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffebebeb', endColorstr='#fff5f5f5', GradientType=0);
+    margin-top: -7px;
+    height: 7px;
+    padding: 0px!important;
 }
 /*////////////////////////////////////////////////////////////////////////////////////////*/
 /*/////////////////////////////////////////// AMIGOS/////////////////////////////////////*/
@@ -363,4 +390,82 @@
 }
 #subir_fondo .ui-input-search, div.ui-input-text, #subir .ui-input-search, div.ui-input-text{
     position: inherit;
+}
+.cabecera_pop_up{
+    background: #0079ca;
+    text-align: center;
+    border: none;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+}
+.cabecera_pop_up .ui-title{
+    margin: 0!important;
+}
+.enlace_boton_verde{
+    background: #6fb04a;
+    border-radius: 0;
+    border-color: #3b5c28 #3d5e2a #2a401c;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+    text-shadow: 0 1px rgba(0,0,0,0.35);
+    color: #fff;
+    border-left: none;
+    border-top: none;
+}
+.enlace_boton_verde:hover{
+    background: #669933;
+    border-radius: 0;
+    border-color: #3b5c28 #3d5e2a #2a401c;
+    border: 1px solid #669933;
+    border-bottom: 1px solid #669933;
+    text-shadow: 0 1px rgba(0,0,0,0.35);
+    color: #fff;
+    border-left: none;
+    border-top: none;
+}
+.enlace_boton_rojo{
+    background: #d64f4b;
+    border-radius: 0;
+    border-color: #3b5c28 #3d5e2a #2a401c;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+    text-shadow: 0 1px rgba(0,0,0,0.35);
+    color: #fff;
+    border-left: none;
+    border-top: none;
+}
+.enlace_boton_rojo:hover{
+    background: #b2423f;
+    border-radius: 0;
+    border-color: #3b5c28 #3d5e2a #2a401c;
+    border: 1px solid #b2423f;
+    border-bottom: 1px solid #b2423f;
+    text-shadow: 0 1px rgba(0,0,0,0.35);
+    color: #fff;
+    border-left: none;
+    border-top: none;
+}
+/*---------------------- LISTA INDIVUDUAL --------------------------------------*/
+.descripcion_lista_individual{
+    background: #fff;
+    color: #4b4b4b;
+}
+.descripcion_lista_individual .descripcion{
+    text-align: center;
+    font-weight: bold;
+}
+.descripcion_lista_individual .n_productos{
+    text-align: center;
+    margin-bottom: 7px;
+}
+.descripcion_lista_individual .porcentaje{
+    margin-left: -15px;
+    margin-right: -15px;
+    width: 0%;
+}
+.descripcion_lista_individual .marca_porcentaje{
+    margin-left: -15px;
+    margin-right: -15px;
+    border-bottom: solid 1px #ccc;
 }
