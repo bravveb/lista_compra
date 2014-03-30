@@ -1,5 +1,5 @@
 var ruta_inicial="http://bravveb.hol.es/lstcp/php/"; 
-var version = 0.2;
+var version = 0.3;
 $(document).ready(function(){
     archivoValidacion = ruta_inicial+"versiones.php?jsoncallback=?";
         $.getJSON(archivoValidacion, {})
