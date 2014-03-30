@@ -174,3 +174,48 @@ function foto(){
   });
   carga_imagenes();
 }
+function func_nueva_lista(){
+    alert('hola');
+    var errores="";
+    if (document.nueva_lista.nombre_nlista.value.length===0) 
+        errores+="Falta el nombre de la lista";
+    if(errores.length>=1)
+        alert(errores);
+    else{
+        archivoValidacion = ruta_inicial+"add_lista.php?jsoncallback=?";
+        $.getJSON(archivoValidacion, {nombre: document.nueva_lista.nombre_nlista.value, descripcion: document.nueva_lista.descripcion_nlista.value, id: id_usuario})
+                .done(function(respuestaServer) {
+                    if (respuestaServer.confirmacion === "correcto") {
+                        $.mobile.changePage("#listas");
+                        func_carga_listas();
+                    }else
+                        alert('Error al crear la lista');
+        });
+    }
+}
+function func_carga_listas(){
+    var html="";
+    archivoValidacion = ruta_inicial+"carga_listas_compra.php?jsoncallback=?";
+    $.getJSON(archivoValidacion, {id: id_usuario})
+            .done(function(respuestaServer) {
+                for(x=0;x<respuestaServer["cuenta"];x++){
+                    html +='<li class="lista_cm" onclick="func_carga_una_lista('+respuestaServer["id_"+x]+', '+respuestaServer["npc_"+x]+', '+respuestaServer["np_"+x]+', '+respuestaServer["pp_"+x]+', \''+respuestaServer["ca_"+x]+'\', \''+respuestaServer["nl_"+x]+'\', \''+respuestaServer["dl_"+x]+'\');">\n\
+                            <a href="#">\n\
+                            <h2>'+respuestaServer["nl_"+x]+'</h2><p>\n\
+                            <strong>'+respuestaServer["dl_"+x]+'</strong></p>\n\
+                            <p>Almacen: No</p>\n\
+                            <p class="ui-li-aside">'+respuestaServer["npc_"+x]+'/'+respuestaServer["np_"+x]+'</p>\n\
+                            </a></li><li class="porcentaje" style="width:'+respuestaServer["pp_"+x]+'%"></li><li class="marca_porcentaje"></li>';
+                }
+                $('#listas_listas').html(html);
+                $('#listas_listas').listview("refresh");
+            });
+}
+function func_carga_una_lista(id_lista, n_productosc, nproductos, porcentaje,cargo, nombre_lista, descripcion_lista){
+    $('#nombre_lista_cabecera').html(nombre_lista);
+    $('.descripcion_lista_individual .descripcion').html(descripcion_lista);
+    $('.descripcion_lista_individual .n_productos').html(n_productosc+'/'+nproductos);
+    $('.descripcion_lista_individual .porcentaje').css({'width':''+porcentaje+'%'});
+    $('#np_id_lista').val(id_lista);
+    $.mobile.changePage("#lista_individual");
+}
