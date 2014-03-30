@@ -54,4 +54,14 @@ include './conexion.php';
 //mysql_query($sql5,$conexion);
 //echo mysql_error();
 
+$sql6 = "CREATE TABLE productos
+(id int NOT NULL AUTO_INCREMENT,
+nombre varchar (30),
+id_lista int NOT NULL,
+FOREIGN KEY (id_lista) REFERENCES listas (id) ON DELETE CASCADE,
+PRIMARY KEY (id)
+)";
+mysql_query($sql6,$conexion);
+echo mysql_error();
+
 mysql_close($conexion);

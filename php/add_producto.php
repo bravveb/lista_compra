@@ -9,19 +9,10 @@ for($i=1 ; $i<=$longitudPass ; $i++){
 $pos=rand(0,$longitudCadena-1);
 $pass .= substr($cadena,$pos,1);}
 
-mysql_query("INSERT INTO `listas`(`nombre`, `descripcion`, `n_productos`, `n_productos_comprados`, `keywl`) VALUES ('{$_GET["nombre"]}','{$_GET["descripcion"]}', 0, 0, '$pass')");
+mysql_query("INSERT INTO `productos`(`nombre`, `id_lista`) VALUES ('{$_GET["nombre"]}', '{$_GET["id_lista"]}')");
 echo mysql_error();
-
-$peticion=mysql_query("SELECT id FROM listas WHERE keywl='$pass'");
-echo mysql_error();
-
-$registro = mysql_fetch_array($peticion);
-   $registro["id"];
    
-mysql_query("INSERT INTO `pertenecientes_listas`(`id_usuario`, `id_lista`, `cargo`) VALUES ('{$_GET["id"]}', '{$registro["id"]}', 'Ad')");
-echo mysql_error();
-
-mysql_query("UPDATE `listas` SET `keywl`='' WHERE id='{$registro["id"]}'");
+mysql_query("UPDATE listas SET n_productos=n_productos+1 WHERE id = '{$_GET["id_lista"]}'");
 echo mysql_error();
 
 $error=  mysql_error();

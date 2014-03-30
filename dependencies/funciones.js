@@ -175,7 +175,6 @@ function foto(){
   carga_imagenes();
 }
 function func_nueva_lista(){
-    alert('hola');
     var errores="";
     if (document.nueva_lista.nombre_nlista.value.length===0) 
         errores+="Falta el nombre de la lista";
@@ -217,5 +216,37 @@ function func_carga_una_lista(id_lista, n_productosc, nproductos, porcentaje,car
     $('.descripcion_lista_individual .n_productos').html(n_productosc+'/'+nproductos);
     $('.descripcion_lista_individual .porcentaje').css({'width':''+porcentaje+'%'});
     $('#np_id_lista').val(id_lista);
+    func_listar_productos(id_lista);
     $.mobile.changePage("#lista_individual");
+}
+function func_agregar_producto(){
+    var errores="";
+    if (document.nuevo_producto.nuevo_fproducto.value.length===0) 
+        errores+="Falta el nombre del producto";
+    if(errores.length>=1)
+        alert(errores);
+    else{
+        archivoValidacion = ruta_inicial+"add_producto.php?jsoncallback=?";
+        $.getJSON(archivoValidacion, {nombre: document.nuevo_producto.nuevo_fproducto.value, id_lista: document.nuevo_producto.np_id_lista.value})
+                .done(function(respuestaServer) {
+                    if (respuestaServer.confirmacion === "correcto") {
+                        $.mobile.changePage("#lista_individual");
+                        func_listar_productos(document.nuevo_producto.np_id_lista.value);
+                    }else
+                        alert('Error al crear la lista');
+        });
+    }
+}
+function func_listar_productos(ide_lista){
+    var html="";
+    archivoValidacion = ruta_inicial+"carga_lista_producto.php?jsoncallback=?";
+    $.getJSON(archivoValidacion, {id_lista: ide_lista})
+        .done(function(respuestaServer) {
+    for(x=0;x<respuestaServer["cuenta"];x++){
+    html +='<input type="checkbox" name="checkbox-'+respuestaServer["idp_"+x]+'" id="checkbox-'+respuestaServer["idp_"+x]+'">\n\
+            <label for="checkbox-'+respuestaServer["idp_"+x]+'">'+respuestaServer["nmp_"+x]+'</label>';
+        }
+        $('#productos_list').html(html);
+        $('#lista_individual').trigger("create");
+    });
 }

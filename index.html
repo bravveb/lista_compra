@@ -104,9 +104,14 @@
             </div>
             <div data-role="content">
                 <div class="descripcion_lista_individual">
-                    <p class="descripcion">Esta seria la descripcion de la lista de la compra</p>
+                    <p class="descripcion"></p>
                     <p class="n_productos"></p><div class="porcentaje"></div><div class="marca_porcentaje"></div>
                 </div>
+                <form name="productos_i" id="productos_i">
+                    <fieldset data-role="controlgroup" id="productos_list">
+                        
+                    </fieldset>
+                </form>
             <div data-role="popup" id="popupDialogAddProduct" data-overlay-theme="a" data-theme="c" data-dismissible="true" style="max-width:400px;" class="ui-corner-all">
                 <div data-role="header" data-theme="a" class="cabecera_pop_up">
                     <h1>Nuevo producto</h1>
@@ -116,7 +121,7 @@
                         <input type="hidden" value="" id="np_id_lista" name="np_id_lista">
                         <p><input type="text" name="nuevo_fproducto" id="nuevo_fproducto" placeholder="Nombre de lista"></p>
                     </form>
-                    <a href="#" onclick="func_nueva_lista();" data-role="button" data-inline="false" class="enlace_boton_verde">Crear lista</a>
+                    <a href="#" onclick="func_agregar_producto();" data-role="button" data-inline="false" class="enlace_boton_verde">A&ntilde;adir producto</a>
                     <a href="#" data-role="button" data-inline="false" data-rel="back" class="enlace_boton_rojo" data-transition="flow">Cerrar</a>
                 </div>
             </div>
