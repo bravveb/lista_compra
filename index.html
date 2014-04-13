@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Lista de la compra</title>
+        <title>CommunityCart | Aplicación lista de la compra</title>
         <link rel="stylesheet"  href="dependencies/jquery.mobile.structure-1.3.2.min.css">
         <link rel="stylesheet"  href="dependencies/jquery.mobile.theme-1.3.2.css">
         <link rel="stylesheet"  href="dependencies/custom.css">
@@ -64,11 +64,22 @@
             </div>
             <div data-role="header" class="cabecera">
                 <a href="#mypanel_portada" class="enlace_menu">&nbsp;</a>
-                <span>nombre_app</span>
+                <span>CommunityCart</span>
                 <a href="#" class="enlace_refrescar" onclick="carga_imagenes();">&nbsp;</a>
             </div>
             <div data-role="content">
-                
+                <div class="ck_contenedor" id="producto1" data-estado="1" onclick="fun_ck_custom_lis(1, 'disabled');">
+                    <div class="zona_estado reservado"></div>
+                    <div class="contenido_productos disabled">Melocotón en almibar nada</div>
+                </div>
+                <div class="ck_contenedor" id="producto2" data-estado="0" onclick="fun_ck_custom_lis(2, 'enab');">
+                    <div class="zona_estado"></div>
+                    <div class="contenido_productos">Melocotón en almibar reservado</div>
+                </div>
+                <div class="ck_contenedor" id="producto3" data-estado="3" onclick="fun_ck_custom_lis(3, 'enab');">
+                    <div class="zona_estado comprado"></div>
+                    <div class="contenido_productos">Melocotón en almibar comprado</div>
+                </div>
             </div>
         </div>
         <div data-role="page" id="listas">
@@ -107,11 +118,7 @@
                     <p class="descripcion"></p>
                     <p class="n_productos"></p><div class="porcentaje"></div><div class="marca_porcentaje"></div>
                 </div>
-                <form name="productos_i" id="productos_i">
-                    <fieldset data-role="controlgroup" id="productos_list">
-                        
-                    </fieldset>
-                </form>
+                <div id="productos_list"></div>
             <div data-role="popup" id="popupDialogAddProduct" data-overlay-theme="a" data-theme="c" data-dismissible="true" style="max-width:400px;" class="ui-corner-all">
                 <div data-role="header" data-theme="a" class="cabecera_pop_up">
                     <h1>Nuevo producto</h1>
