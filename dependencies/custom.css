@@ -469,3 +469,45 @@
     margin-right: -15px;
     border-bottom: solid 1px #ccc;
 }
+/*-----------------------------------------------------------------------------*/
+/*---------------------- CEHCKS PERSONALIZADOS --------------------------------*/
+/*-----------------------------------------------------------------------------*/
+.ck_contenedor{
+    width: 100%;
+    font-size: 14px;
+    height: 35px;
+    line-height: 35px;
+    background: #fff;
+    border-bottom: solid 1px #333;
+    font-weight: bold;
+    float: left;
+}
+.ck_contenedor:first-child{
+    border-top: solid 1px #333;
+}
+.ck_contenedor .zona_estado{
+    width: 35px;
+    margin-right: 5px;
+    float: left;
+    height: 35px;
+    background: #fff;
+    border-right: 1px solid #ccc;
+}
+.ck_contenedor .comprado{
+    background: #6fb04a;
+    background-image: url('images/icons-30-white-checks.png');
+    background-position: 6px;
+    background-repeat: no-repeat;
+}
+.ck_contenedor .reservado{
+    background: #c1d324;
+    background-image: url('images/icons-30-white-checks.png');
+    background-position: -33px;
+    background-repeat: no-repeat;
+}
+.ck_contenedor .disabled{
+    background: #d1d1d1;
+}
+.contenido_productos{
+    
+}

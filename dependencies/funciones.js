@@ -1,5 +1,5 @@
 var ruta_inicial="http://bravveb.hol.es/lstcp/php/"; 
-var version = 0.3;
+var version = 0.2;
 $(document).ready(function(){
     archivoValidacion = ruta_inicial+"versiones.php?jsoncallback=?";
         $.getJSON(archivoValidacion, {})
@@ -239,14 +239,31 @@ function func_agregar_producto(){
 }
 function func_listar_productos(ide_lista){
     var html="";
+    estado_temp="enable";
     archivoValidacion = ruta_inicial+"carga_lista_producto.php?jsoncallback=?";
     $.getJSON(archivoValidacion, {id_lista: ide_lista})
         .done(function(respuestaServer) {
     for(x=0;x<respuestaServer["cuenta"];x++){
-    html +='<input type="checkbox" name="checkbox-'+respuestaServer["idp_"+x]+'" id="checkbox-'+respuestaServer["idp_"+x]+'">\n\
-            <label for="checkbox-'+respuestaServer["idp_"+x]+'">'+respuestaServer["nmp_"+x]+'</label>';
+    html +='<div class="ck_contenedor" data-estado="0" onclick="fun_ck_custom_lis('+respuestaServer["idp_"+x]+', \''+estado_temp+'\');" id="producto'+respuestaServer["idp_"+x]+'">\n\
+            <div class="zona_estado"></div>\n\
+            <div class="contenido_productos">'+respuestaServer["nmp_"+x]+'</div></div>';
         }
         $('#productos_list').html(html);
-        $('#lista_individual').trigger("create");
     });
+}
+function fun_ck_custom_lis(valor_clave, valor_edit){
+    valor_estado=$("#producto"+valor_clave).attr("data-estado");
+    if(valor_edit!=="disabled"){
+        if(valor_estado==="0"){
+            $("#producto"+valor_clave+" .zona_estado").addClass("reservado");
+            $("#producto"+valor_clave).attr("data-estado", "1");
+        }else if(valor_estado==="1"){
+            $("#producto"+valor_clave+" .zona_estado").removeClass("reservado");
+            $("#producto"+valor_clave+" .zona_estado").addClass("comprado");
+            $("#producto"+valor_clave).attr("data-estado", "2");
+        }else{
+            $("#producto"+valor_clave+" .zona_estado").removeClass("comprado");
+            $("#producto"+valor_clave).attr("data-estado", "0");
+        }
+    }
 }
