@@ -9,6 +9,7 @@
         <script src="dependencies/jquery.js"></script>
         <script src="dependencies/jquery.mobile-1.3.2.min.js"></script>
         <script src="dependencies/funciones.js"></script>
+        <script src="dependencies/cordova.js"></script>
         <script>
             var id_usuario= "";
         </script>
@@ -145,8 +146,9 @@
         </div>
         <div data-role="page" id="amigos">
             <div data-role="header" class="cabecera">
-                <a href="#amigos" class="enlace_volver">&nbsp;</a>
-                <span>Buscar amigos</span>
+                <a href="#inicio" class="enlace_casa">&nbsp;</a>
+                <span>Amigos</span>
+                <a href="#sch_amigo" class="enlace_lupa" onclick="fun_personas();">&nbsp;</a>
             </div>
             <div data-role="content">
                 <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Buscar amigo..." data-inset="false" id="lista_amigos_li" class="ui-icon-alt">
