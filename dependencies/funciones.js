@@ -248,9 +248,9 @@ function fun_ck_custom_lis(valor_clave, lista, valor_edit){
             $("#producto"+valor_clave).attr("data-estado", "2");
             $.getJSON(archivoValidacion, {id_producto: valor_clave, estado: 2, lista:lista})
         .done(function(respuestaServer) {
-            $('.n_productos').html(respuestaServer['npc_loc']+"/"+respuestaServer['np_loc']);
-            $('.descripcion_lista_individual .porcentaje').animate({'width': respuestaServer['pp_loc']+'%'});
-            $('#porct_'+lista).html(respuestaServer['npc_loc']+"/"+respuestaServer['np_loc']);
+           // $('.n_productos').html(respuestaServer['npc_loc']+"/"+respuestaServer['np_loc']);
+            //$('.descripcion_lista_individual .porcentaje').animate({'width': respuestaServer['pp_loc']+'%'});
+            //$('#porct_'+lista).html(respuestaServer['npc_loc']+"/"+respuestaServer['np_loc']);
         });
         }else{
             $("#producto"+valor_clave+" .zona_estado").removeClass("comprado");
