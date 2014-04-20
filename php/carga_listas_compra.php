@@ -9,15 +9,21 @@ $x=0;
     $sh_usuarios["id_".$x]=$registro["id"];
     $sh_usuarios["nl_".$x]=$registro["nombre"];
     $sh_usuarios["dl_".$x]=$registro["descripcion"];
-    $sh_usuarios["np_".$x]=$registro["n_productos"];
-    $sh_usuarios["npc_".$x]=$registro["n_productos_comprados"];
     $sh_usuarios["ca_".$x]=$registro["cargo"];
-    if($registro["n_productos_comprados"]==0 || $registro["n_productos"]==0){
-        $porcentaje=0;
-    }else{
-        $porcentaje=($registro["n_productos_comprados"]*100)/$registro["n_productos"];
-    }
-    $sh_usuarios["pp_".$x]=$porcentaje;
+    
+    $peticionpro=mysql_query("SELECT count(id) FROM `productos` WHERE id_lista='{$registro["id"]}'");
+    $resultadopro=mysql_fetch_assoc($peticionpro);
+    
+    $peticioncomp=mysql_query("SELECT count(id) FROM `productos` WHERE id_lista='{$registro["id"]}' and estado='2'");
+    $resultadocomp=mysql_fetch_assoc($peticioncomp);
+    $sh_usuarios["np_".$x]=$resultadopro["count(id)"];
+    $sh_usuarios["npc_".$x]=$resultadocomp["count(id)"];
+        if($resultadocomp["count(id)"]==0 || $resultadopro["count(id)"]==0){
+            $porcentaje=0;
+        }else{
+            $porcentaje=($resultadocomp["count(id)"]*100)/$resultadopro["count(id)"];
+        }
+        $sh_usuarios["pp_".$x]=$porcentaje;
     $x++;
  }
 $sh_usuarios["cuenta"]=$x;

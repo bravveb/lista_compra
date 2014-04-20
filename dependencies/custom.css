@@ -196,6 +196,13 @@
     background-position: 2305px;
     padding-top: 6px;
 }
+.enlace_configuracion{
+    background: #0079ca;
+    border: none;
+    background: url('images/icons-36-white.png');
+    background-position: 1154px;
+    padding-top: 6px;
+}
 .cabecera{
     background: #0079ca;
     text-align: center;
@@ -305,41 +312,30 @@
 /*////////////////////////////////////////////////////////////////////////////////////////*/
 /*/////////////////////////////////////////// AMIGOS/////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////////////////////*/
-#amigos .ui-bar-c{
-    background: #6fb04a;
-    border-color: #3b5c28 #3d5e2a #2a401c;
+#amigos .ui-bar-c, #sch_amigo .ui-bar-c{
+    background: #fff;
     border: 1px solid rgba(0,0,0,0.4);
     border-bottom: 1px solid rgba(0,0,0,0.6);
-    text-shadow: 0 1px rgba(0,0,0,0.35);
 }
-#amigos li{
+#amigos li, #sch_amigo li{
     border-bottom: 2px solid #aaa /*{d-bhover-border}*/;
     font-weight: bold;
     color: #333 /*{d-bhover-color}*/;
-    background: #fff;
+    background: #ddd;
 }
-#amigos li a{
+#amigos li:hover, #sch_amigo li:hover{
+    background: #aaa;
+    color: #111;
+}
+#amigos li a, #sch_amigo li a{
     color: #333;
 }
-#amigos li p{
+#amigos li p, #sch_amigo li p{
     margin-left: 15px;
 }
 /*///////////////////////////////////////////////////////////////////////////////////////*/
 /*/////////////////////////////////////// BUSCAR AMIGOS/////////////////////////////////*/
 /*/////////////////////////////////////////////////////////////////////////////////////*/
-#buscar_amigos .ui-bar-c{
-    background: #6fb04a;
-    border-color: #3b5c28 #3d5e2a #2a401c;
-    border: 1px solid rgba(0,0,0,0.4);
-    border-bottom: 1px solid rgba(0,0,0,0.6);
-    text-shadow: 0 1px rgba(0,0,0,0.35);
-}
-#buscar_amigos li{
-    border-bottom: 2px solid #aaa /*{d-bhover-border}*/;
-    font-weight: bold;
-    color: #333 /*{d-bhover-color}*/;
-    background: #fff;
-}
 .agregar_amigo{
     background: #0079ca;
     border-bottom: 1px solid rgba(0,0,0,0.6);
@@ -450,18 +446,22 @@
 .descripcion_lista_individual{
     background: #fff;
     color: #4b4b4b;
+    margin-right: -15px;
+    margin-left: -15px;
 }
 .descripcion_lista_individual .descripcion{
     text-align: center;
     font-weight: bold;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .descripcion_lista_individual .n_productos{
     text-align: center;
     margin-bottom: 7px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .descripcion_lista_individual .porcentaje{
-    margin-left: -15px;
-    margin-right: -15px;
     width: 0%;
 }
 .descripcion_lista_individual .marca_porcentaje{
@@ -478,12 +478,9 @@
     height: 35px;
     line-height: 35px;
     background: #fff;
-    border-bottom: solid 1px #333;
+    border-bottom: solid 1px #999;
     font-weight: bold;
     float: left;
-}
-.ck_contenedor:first-child{
-    border-top: solid 1px #333;
 }
 .ck_contenedor .zona_estado{
     width: 35px;
@@ -510,4 +507,135 @@
 }
 .contenido_productos{
     
+}
+#productos_list{
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.ui-bar-c .ui-input-search{
+    border-radius: 0px;
+}
+.ui-bar-c .ui-input-search a{
+    background: none;
+}
+.fondo_perf{
+    height: 200px;
+    width: 100%;
+    background: #444;
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    padding-top: 60px;
+}
+.fondo_perf .img_usuario{
+    border: solid 2px #ddd;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    margin-bottom: 7px;
+    background-size: cover!important;
+}
+.fondo_perf .img_usuario .letra{
+    font-family: sans-serif;
+    text-transform: capitalize;
+    font-size: 40px;
+    text-shadow: none;
+    text-align: center;
+    line-height: 80px;
+    color: #fff;
+    width: 80px;
+    height: 80px;
+}
+.fondo_perf .img_usuario .f_color1{
+    background: #428bca;
+}
+.fondo_perf .img_usuario .f_color2{
+    background: #5bc0de;
+}
+.fondo_perf .img_usuario .f_color3{
+    background: #5cb85c;
+}
+.fondo_perf .img_usuario .f_color4{
+    background: #f0ad4e;
+}
+.fondo_perf .img_usuario .f_color5{
+    background: #d9534f;
+}
+.fondo_perf .img_usuario .f_color6{
+    background: #7c7ca0;
+}
+.fondo_perf .img_usuario .f_color7{
+    background: #999376;
+}
+.fondo_perf .img_usuario .f_color8{
+    background: #d4d62e;
+}
+.fondo_perf .img_usuario .f_color9{
+    background: #926178;
+}
+.fondo_perf .img_usuario .f_color10{
+    background: #1099b6;
+}
+.fondo_perf .img_usuario .f_color11{
+    background: #b45454;
+}
+#perfil_us_in .nombre{
+    border-top: solid 1px #fff;
+    border-bottom: solid 1px #fff;
+    background: #111;
+    color: #fff;
+    opacity: 0.8;
+    margin-top: -50px;
+    height: 30px;
+    line-height: 28px;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+}
+#boton_agregar_amigo .agregar{
+    background: #6fb04a;
+    border-radius: 0;
+    border-color: #3b5c28 #3d5e2a #2a401c;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+    text-shadow: 0 1px rgba(0,0,0,0.35);
+    color: #fff;
+    width: 100%;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-size: 20px;
+    margin-top: 25px;
+    border-left: none;
+    border-top: none;
+}
+#boton_agregar_amigo .agregar:hover{
+    background: #669933;
+    border-bottom: solid 1px #669933;
+    border-right: solid 1px #669933;
+}
+#boton_agregar_amigo .delete{
+    background: #d64f4b;
+    border-radius: 0;
+    border-color: #3b5c28 #3d5e2a #2a401c;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+    text-shadow: 0 1px rgba(0,0,0,0.35);
+    color: #fff;
+    width: 100%;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-size: 20px;
+    margin-top: 25px;
+    border-left: none;
+    border-top: none;
+}
+#boton_agregar_amigo .delete:hover{
+    background: #b2423f;
+    border-bottom: solid 1px #b2423f;
+    border-right: solid 1px #b2423f;
+}
+.arreglo_boton_conf_lista{
+    margin-right: 45px!important;
+}
+.arreglo_plus_lista{
+    margin-top: -6px!important;
 }

@@ -1,7 +1,7 @@
 <?php
 include './conexion.php';
 
-mysql_query("INSERT INTO `amigos`(`id_usuario`, `id_amigo`) VALUES ('{$_GET["id"]}', SHA('{$_GET["id_amigo"]}'))");
+mysql_query("INSERT INTO `pertenecientes_listas`(`id_usuario`, `id_lista`, `cargo`) VALUES (SHA('{$_GET["id_amigo"]}'), '{$_GET["id_lista"]}', 'invi')");
 if(mysql_error()=="")
     {$sh_usuarios["confirmacion"]="ok";}
 else

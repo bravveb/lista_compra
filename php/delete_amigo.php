@@ -1,7 +1,7 @@
 <?php
 include './conexion.php';
 
-mysql_query("INSERT INTO `amigos`(`id_usuario`, `id_amigo`) VALUES ('{$_GET["id"]}', SHA('{$_GET["id_amigo"]}'))");
+mysql_query("DELETE FROM `amigos` WHERE `id_usuario`='{$_GET["id"]}' AND `id_amigo`=SHA('{$_GET["id_amigo"]}')");
 if(mysql_error()=="")
     {$sh_usuarios["confirmacion"]="ok";}
 else
@@ -12,3 +12,5 @@ $resultadosJson = json_encode($sh_usuarios);
 echo $_GET['jsoncallback'] . '(' . $resultadosJson . ');';
 mysql_close($conexion);
 /**/
+
+

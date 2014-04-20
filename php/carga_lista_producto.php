@@ -8,6 +8,14 @@ $x=0;
  while ($registro = mysql_fetch_array($peticion)){
     $sh_usuarios["idp_".$x]=$registro["id"];
     $sh_usuarios["nmp_".$x]=$registro["nombre"];
+    $sh_usuarios["est_".$x]=$registro["estado"];
+    if($registro["estado"]==1){
+        $sh_usuarios["cla_".$x]="reservado";
+    }else if($registro["estado"]==2){
+        $sh_usuarios["cla_".$x]="comprado";
+    }else{
+        $sh_usuarios["cla_".$x]="";
+    }
     $x++;
  }
 $sh_usuarios["cuenta"]=$x;

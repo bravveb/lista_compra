@@ -57,7 +57,7 @@
                     <li><a href="#inicio"><div class="enlaces_menu"><span class="icono_inicio">&nbsp;</span>Inicio</div></a></li>
                     <li><a href="#almacen"><div class="enlaces_menu"><span class="icono_almacen">&nbsp;</span>Almacen</div></a></li>
                     <li><a href="#listas" onclick="func_carga_listas();"><div class="enlaces_menu"><span class="icono_listas">&nbsp;</span>Listas</div></a></li>
-                    <li><a href="#amigos"><div class="enlaces_menu"><span class="icono_amigos">&nbsp;</span>Amigos</div></a></li>
+                    <li><a href="#amigos" onclick="func_listar_amigo(id_usuario);"><div class="enlaces_menu"><span class="icono_amigos">&nbsp;</span>Amigos</div></a></li>
                     <li><a href="#perfil"><div class="enlaces_menu"><span class="icono_perfil">&nbsp;</span>Perfil</div></a></li>
                     <li><a href="#login" onclick="salir();"><div class="enlaces_menu"><span class="icono_salir">&nbsp;</span>Salir</div></a></li>
                 </ul>
@@ -68,18 +68,6 @@
                 <a href="#" class="enlace_refrescar" onclick="carga_imagenes();">&nbsp;</a>
             </div>
             <div data-role="content">
-                <div class="ck_contenedor" id="producto1" data-estado="1" onclick="fun_ck_custom_lis(1, 'disabled');">
-                    <div class="zona_estado reservado"></div>
-                    <div class="contenido_productos disabled">Melocotón en almibar nada</div>
-                </div>
-                <div class="ck_contenedor" id="producto2" data-estado="0" onclick="fun_ck_custom_lis(2, 'enab');">
-                    <div class="zona_estado"></div>
-                    <div class="contenido_productos">Melocotón en almibar reservado</div>
-                </div>
-                <div class="ck_contenedor" id="producto3" data-estado="3" onclick="fun_ck_custom_lis(3, 'enab');">
-                    <div class="zona_estado comprado"></div>
-                    <div class="contenido_productos">Melocotón en almibar comprado</div>
-                </div>
             </div>
         </div>
         <div data-role="page" id="listas">
@@ -111,7 +99,8 @@
             <div data-role="header" class="cabecera">
                 <a href="#listas" class="enlace_volver">&nbsp;</a>
                 <span id="nombre_lista_cabecera"></span>
-                <a href="#popupDialogAddProduct" data-rel="popup" data-position-to="window" data-transition="pop" class="enlace_mas">&nbsp;</a>
+                <a href="#agredar_usuario" class="enlace_configuracion arreglo_boton_conf_lista" onclick="func_admin_list();">&nbsp;</a>
+                <a href="#popupDialogAddProduct" data-rel="popup" data-position-to="window" data-transition="pop" class="enlace_mas arreglo_plus_lista">&nbsp;</a>
             </div>
             <div data-role="content">
                 <div class="descripcion_lista_individual">
@@ -134,10 +123,52 @@
             </div>
             </div>
         </div>
+        <div data-role="page" id="agredar_usuario">
+            <div data-role="header" class="cabecera">
+                <a href="#lista_individual" class="enlace_volver">&nbsp;</a>
+                <span>A&ntilde;adir a lista</span>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Buscar amigo..." data-inset="false" id="agreamigos_li">
+                    
+                </ul>
+            </div>
+        </div>
+        <div data-role="page" id="add_a_lista">
+            <div data-role="header" class="cabecera">
+                <a href="#agredar_usuario" class="enlace_volver">&nbsp;</a>
+                <span>A&ntilde;adir a lista</span>
+            </div>
+            <div data-role="content">
+                <div id="boton_add_a_lista"></div>
+            </div>
+        </div>
+        <div data-role="page" id="sch_amigo">
+            <div data-role="header" class="cabecera">
+                <a href="#amigos" class="enlace_volver">&nbsp;</a>
+                <span>Buscar amigos</span>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Buscar amigo..." data-inset="false" id="l_sch_amigo" class="ui-icon-alt">
+                    
+                </ul>
+            </div>
+        </div>
+        <div data-role="page" id="perfil_us_in">
+            <div data-role="header" class="cabecera">
+                <a href="#sch_amigo" class="enlace_volver">&nbsp;</a>
+                <span id="nombre_usuario_perf"></span>
+            </div>
+            <div id="contened_imgs_perfil"></div>
+            <div data-role="content">
+                
+                <div id="boton_agregar_amigo"></div>
+            </div>
+        </div>
         <div data-role="page" id="perfil">
             <div data-role="header" class="cabecera">
                 <a href="#inicio" class="enlace_casa">&nbsp;</a>
-                <span>nombre_app</span>
+                <span>CommunityCart</span>
                 <a href="#" class="enlace_refrescar" onclick="carga_imagenes();">&nbsp;</a>
             </div>
             <div data-role="content">
