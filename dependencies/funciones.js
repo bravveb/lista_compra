@@ -1,5 +1,5 @@
 var ruta_inicial="http://bravveb.hol.es/lstcp/php/"; 
-var version = 0.32;
+var version = 0.7;
 $(document).ready(function(){
     archivoValidacion = ruta_inicial+"versiones.php?jsoncallback=?";
         $.getJSON(archivoValidacion, {})
@@ -101,29 +101,6 @@ $(document).on( "pageinit", "#buscar_amigos", function() {
                 $('#buscador_amigos_ul').trigger("updatelayout");
             });
 });
-
-$(document).on( "pageinit", "#amigos", function() {
-    var html="";
-    archivoValidacion = "http://localhost:8080/appuestas_api/lista_amigos.php?jsoncallback=?";
-    $.getJSON(archivoValidacion, {id: id_usuario})
-            .done(function(respuestaServer) {
-                for(x=0;x<respuestaServer["cuenta"];x++){
-                    html += "<li><a href='#'>" + respuestaServer["u_"+x] + "</a><p><strong class='resultado'>Acierto:</strong> 20%</p></li>";
-                }
-                $('#lista_amigos').html(html);
-                $('#lista_amigos').listview("refresh");
-                $('#lista_amigos').trigger("updatelayout");
-            });
-});
-
-function add_amigo(id_amigo){
-    archivoValidacion = "http://localhost:8080/appuestas_api/agregar_amigo.php?jsoncallback=?";
-    $.getJSON(archivoValidacion, {id: id_usuario, nombre:nombre_usuario, id_amigo:id_amigo })
-            .done(function(respuestaServer) {
-                $.mobile.changePage("#amigos", {transition: "slideup"});
-            });
-}
-
 function fondo(){
   $("#cargados").html('Cargando imagen...');
   var archivos = document.getElementById("fondo");//Damos el valor del input tipo file
@@ -203,7 +180,7 @@ function func_carga_listas(){
                             <h2>'+respuestaServer["nl_"+x]+'</h2><p>\n\
                             <strong>'+respuestaServer["dl_"+x]+'</strong></p>\n\
                             <p>Almacen: No</p>\n\
-                            <p class="ui-li-aside">'+respuestaServer["npc_"+x]+'/'+respuestaServer["np_"+x]+'</p>\n\
+                            <p class="ui-li-aside" id="porct_'+respuestaServer["id_"+x]+'">'+respuestaServer["npc_"+x]+'/'+respuestaServer["np_"+x]+'</p>\n\
                             </a></li><li class="porcentaje" style="width:'+respuestaServer["pp_"+x]+'%"></li><li class="marca_porcentaje"></li>';
                 }
                 $('#listas_listas').html(html);
@@ -244,26 +221,141 @@ function func_listar_productos(ide_lista){
     $.getJSON(archivoValidacion, {id_lista: ide_lista})
         .done(function(respuestaServer) {
     for(x=0;x<respuestaServer["cuenta"];x++){
-    html +='<div class="ck_contenedor" data-estado="0" onclick="fun_ck_custom_lis('+respuestaServer["idp_"+x]+', \''+estado_temp+'\');" id="producto'+respuestaServer["idp_"+x]+'">\n\
-            <div class="zona_estado"></div>\n\
+    html +='<div class="ck_contenedor" data-estado="'+respuestaServer["est_"+x]+'" onclick="fun_ck_custom_lis('+respuestaServer["idp_"+x]+','+ide_lista+', \''+estado_temp+'\');" id="producto'+respuestaServer["idp_"+x]+'">\n\
+            <div class="zona_estado '+respuestaServer["cla_"+x]+'"></div>\n\
             <div class="contenido_productos">'+respuestaServer["nmp_"+x]+'</div></div>';
         }
         $('#productos_list').html(html);
     });
 }
-function fun_ck_custom_lis(valor_clave, valor_edit){
+function fun_ck_custom_lis(valor_clave, lista, valor_edit){
     valor_estado=$("#producto"+valor_clave).attr("data-estado");
     if(valor_edit!=="disabled"){
         if(valor_estado==="0"){
             $("#producto"+valor_clave+" .zona_estado").addClass("reservado");
             $("#producto"+valor_clave).attr("data-estado", "1");
+            archivoValidacion = ruta_inicial+"upd_producto.php?jsoncallback=?";
+            $.getJSON(archivoValidacion, {id_producto: valor_clave, estado: 1})
+        .done(function(respuestaServer) {
+            $('.n_productos').html(respuestaServer['npc_loc']+"/"+respuestaServer['np_loc']);
+            $('.descripcion_lista_individual .porcentaje').animate({'width': respuestaServer['pp_loc']+'%'});
+            $('#porct_'+lista).html(respuestaServer['npc_loc']+"/"+respuestaServer['np_loc']);
+        });
         }else if(valor_estado==="1"){
             $("#producto"+valor_clave+" .zona_estado").removeClass("reservado");
             $("#producto"+valor_clave+" .zona_estado").addClass("comprado");
+            archivoValidacion = ruta_inicial+"upd_producto.php?jsoncallback=?";
             $("#producto"+valor_clave).attr("data-estado", "2");
+            $.getJSON(archivoValidacion, {id_producto: valor_clave, estado: 2, lista:lista})
+        .done(function(respuestaServer) {
+            $('.n_productos').html(respuestaServer['npc_loc']+"/"+respuestaServer['np_loc']);
+            $('.descripcion_lista_individual .porcentaje').animate({'width': respuestaServer['pp_loc']+'%'});
+            $('#porct_'+lista).html(respuestaServer['npc_loc']+"/"+respuestaServer['np_loc']);
+        });
         }else{
             $("#producto"+valor_clave+" .zona_estado").removeClass("comprado");
             $("#producto"+valor_clave).attr("data-estado", "0");
+            archivoValidacion = ruta_inicial+"upd_producto.php?jsoncallback=?";
+            $.getJSON(archivoValidacion, {id_producto: valor_clave, estado: 0, lista: lista})
+        .done(function(respuestaServer) {
+            $('.n_productos').html(respuestaServer['npc_loc']+"/"+respuestaServer['np_loc']);
+            $('.descripcion_lista_individual .porcentaje').animate({'width': respuestaServer['pp_loc']+'%'});
+            $('#porct_'+lista).html(respuestaServer['npc_loc']+"/"+respuestaServer['np_loc']);
+        });
         }
     }
+}
+function fun_personas(){
+    html="";
+    archivoValidacion = ruta_inicial+"listar_personas.php?jsoncallback=?";
+    $.getJSON(archivoValidacion, {id_usuario: id_usuario})
+            .done(function(respuestaServer) {
+                for (x = 0; x < respuestaServer["cuenta"]; x++) {
+                    html += '<li onclick="func_paso_perf_us(\''+respuestaServer["n_"+x]+'\');")><a href="#">'+respuestaServer["n_"+x]+'</a></li>';
+                }
+                $('#l_sch_amigo').html(html);
+                $('#l_sch_amigo').listview("refresh");
+                $('#l_sch_amigo').trigger("updatelayout");
+            });
+}
+function func_paso_perf_us(usuario){
+    $('#nombre_usuario_perf').html(usuario);
+    $('#contened_imgs_perfil').html('<div class="fondo_perf"><div class="img_usuario"></div></div><div class="nombre">'+usuario+'</div>');
+    agregadoono(usuario);
+    
+    archivoValidacion = ruta_inicial+"perfil_individual.php?jsoncallback=?";
+    $.getJSON(archivoValidacion, {id: usuario})
+            .done(function(respuestaServer) {
+                var res = respuestaServer["i_logo"].substring(0,1);
+                if (res==='<')
+                    $('.fondo_perf .img_usuario').html(respuestaServer["i_logo"]);
+                else
+                    $('.fondo_perf .img_usuario').css({'background':'url("'+ruta_inicial+'images/'+respuestaServer["i_logo"]+'")'});
+                if(respuestaServer["i_fondo"]!==null)
+                    $('.fondo_perf').css({'background':'url("'+ruta_inicial+'images/'+respuestaServer["i_fondo"]+'")'});
+            });
+    $.mobile.changePage("#perfil_us_in");
+}
+function func_listar_amigo(id_usuario){
+    html="";
+    archivoValidacion = ruta_inicial+"listar_amigos.php?jsoncallback=?";
+    $.getJSON(archivoValidacion, {id_usuario: id_usuario})
+            .done(function(respuestaServer) {
+                for (x = 0; x < respuestaServer["cuenta"]; x++) {
+                    html += '<li onclick="func_paso_perf_us(\''+respuestaServer["n_"+x]+'\');")><a href="#">'+respuestaServer["n_"+x]+'</a></li>';
+                }
+                $('#lista_amigos_li').html(html);
+                $('#lista_amigos_li').listview("refresh");
+                $('#lista_amigos_li').trigger("updatelayout");
+            });
+}
+function func_add_ami(n_amigo){
+    archivoValidacion = ruta_inicial+"agregar_amigo.php?jsoncallback=?";
+    $.getJSON(archivoValidacion, {id: id_usuario, id_amigo: n_amigo})
+            .done(function(respuestaServer) {
+                agregadoono(n_amigo);
+            });
+}
+function func_del_ami(n_amigo){
+    archivoValidacion = ruta_inicial+"delete_amigo.php?jsoncallback=?";
+    $.getJSON(archivoValidacion, {id: id_usuario, id_amigo: n_amigo})
+            .done(function(respuestaServer) {
+                agregadoono(n_amigo);
+            });
+}
+function agregadoono(n_amigo){
+    archivoValidacion = ruta_inicial+"estado_amigo.php?jsoncallback=?";
+    $.getJSON(archivoValidacion, {id: id_usuario, id_amigo: n_amigo})
+            .done(function(respuestaServer) {
+                if(respuestaServer['confirmacion']==="no"){
+                    $('#boton_agregar_amigo').html('<input type="button" class="agregar" value="Agregar Amigo" onclick="func_add_ami(\''+n_amigo+'\');")>');
+                }else{
+                    $('#boton_agregar_amigo').html('<input type="button" class="delete" value="Eliminar Amigo" onclick="func_del_ami(\''+n_amigo+'\');")>');
+                }
+            });
+            func_listar_amigo(id_usuario)
+}
+function func_admin_list(){
+    lista=$("#np_id_lista").val();
+     html="";
+    archivoValidacion = ruta_inicial+"listar_amigos.php?jsoncallback=?";
+    $.getJSON(archivoValidacion, {id_usuario: id_usuario})
+            .done(function(respuestaServer) {
+                for (x = 0; x < respuestaServer["cuenta"]; x++) {
+                    html += '<li onclick="func_listar_privilegios('+lista+',\''+respuestaServer["n_"+x]+'\');")><a href="#">'+respuestaServer["n_"+x]+'</a></li>';
+                }
+                $('#agreamigos_li').html(html);
+                $('#agreamigos_li').listview("refresh");
+                $('#agreamigos_li').trigger("updatelayout");
+            });
+}
+function func_listar_privilegios(lista, nombre_amigo){
+   $('#boton_add_a_lista').html('<input type="button" class="agregar" value="Agregar a Lista" onclick="func_add_list('+lista+', \''+nombre_amigo+'\');")>'); 
+   $.mobile.changePage("#add_a_lista");
+}
+function func_add_list(lista, nombre_amigo){
+    archivoValidacion = ruta_inicial+"add_amigo_lista.php?jsoncallback=?";
+    $.getJSON(archivoValidacion, {id_lista: lista, id_amigo: nombre_amigo})
+            .done(function(respuestaServer) {
+            });
 }
